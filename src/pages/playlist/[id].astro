@@ -1,0 +1,82 @@
+---
+import PlaylistItemCard from '../../components/PlaylistItemCard.astro';
+import Layout from '../../layouts/Layout.astro';
+import { allPlaylists, songs } from '../../lib/data';
+
+/*Para poder usar rutas dinámicas es necesario darle la directiva a Astro
+para que se ejecute en el servidor (renderice las páginas en el server)
+En 'astro.config.mjs'
+export default defineConfig({
+  integrations: [tailwind()],
+  output: 'server' <------ Incluir esta directiva
+});
+Esto es recomendable cuando tenemos demasiadas ids y no las conocemos
+Si se tratase de un e-commerce con 10 productos deberíamos usar getStaticPaths() 
+Ejemplo:
+export function getStaticPaths(){
+    return allPlaylists.map((playlist) => ({
+        params: {
+            id: playlist.id
+        }
+    }))
+}
+
+*/
+const { id } = Astro.params //pedimos la id a params
+//Pedimos la playlist en cuestión
+const playlist = allPlaylists.find((playlist) => playlist.id === id)
+//Pedimos sus canciones
+const playlistSongs = songs.filter((song) => song.albumId === playlist?.albumId)
+let idForTransition = crypto.randomUUID();
+
+---
+
+<Layout title="Spotify-clon">
+<div
+id="playlist-container"
+    class="relative flex flex-col h-full bg-zinc-900 overflow-x-hidden">
+
+<!--Para las transiciones poner el ViewTransitions en el Layout -->
+<!--<PageHeader /> -->
+<header class="flex flex-row gap-8 px-6 mt-12">
+    <picture class="aspect-square w-52 h-52 flex-none">
+      <img
+        src={playlist?.cover}
+        alt={`Cover of ${playlist?.title}`}
+        class="object-cover w-full h-full shadow-lg"
+      />
+    </picture>
+
+    <div class="flex flex-col justify-between">
+        <h2 class="flex flex-1 items-end">Playlist</h2>
+        <div>
+            <h1 class="title-clamp font-bold block"> {playlist?.title}
+            <span></span>
+            </h1>
+       
+        </div>
+        <div class="flex-1 flex items-end">
+            <div class="text-sm text-gray-300 font-normal">
+                <div>
+                    <span>{playlist?.artists.join(", ")}</span>
+                </div>
+                <p class="mt-1">
+                    <span class="text-white">50 canciones</span>, 3 h aproximadamente
+                </p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--esta imagen transiciona desde PlaylistItemCard -->
+
+<div
+class="relative z-10 px-6 pt-10">
+<!--<Greetings /> -->
+<h1 class="text-4xl font-bold">Playlist</h1>
+<div class="flex flex-wrap mt-6 gap-4">
+  </div>
+</div>
+
+<div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80"></div>
+</Layout> 
