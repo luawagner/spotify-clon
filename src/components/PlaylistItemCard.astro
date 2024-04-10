@@ -24,6 +24,7 @@ const artistsString = artists.join(", ");
         src={cover}
         alt={`Cover of ${title} by ${artistsString}`}
         class="object-cover w-full h-full rounded-md"
+        transition:name=`playlist ${id} image`
       />
     </picture>
     <!--la transición debe estar identificada con id y debe estar declarada en los dos componentes conectados
@@ -32,10 +33,12 @@ Es decir, también tiene que estar en la página playlist/[id], es un nexo entre
         <!--tenemos que transicionar esta imagen a la siguiente página -->
    
     <div class="flex flex-auto flex-col px-2">
-        <h4 class="text-white text-sm" >
+        <h4 class="text-white text-sm" 
+        transition:name=`playlist ${id} title`>
             {title}</h4>
 
-        <span class="text-xs text-gray-400">
+        <span class="text-xs text-gray-400"
+        transition:name=`playlist ${id} artists`>
         {artistsString}</span>
     </div>
 </a>

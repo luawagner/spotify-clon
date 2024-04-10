@@ -34,7 +34,8 @@ const playlistSongs = songs.filter(
 <Layout title="Spotify-clon">
     <div
         id="playlist-container"
-        class="relative flex flex-col h-full bg-zinc-900 overflow-x-hidden">
+        class="relative flex flex-col h-full bg-zinc-900 overflow-x-hidden"
+        transition:name=`playlist ${id} box` >
         <!--Para las transiciones poner el ViewTransitions en el Layout -->
         <!--<PageHeader /> -->
         <header class="flex flex-row gap-8 px-6 mt-12">
@@ -43,6 +44,7 @@ const playlistSongs = songs.filter(
                     src={playlist?.cover}
                     alt={`Cover of ${playlist?.title}`}
                     class="object-cover w-full h-full shadow-lg"
+                    transition:name=`playlist ${playlist?.id} image`
                 />
             </picture>
 
@@ -51,13 +53,13 @@ const playlistSongs = songs.filter(
                 <div>
                   <h1 class="text-5xl font-bold block text-white">
                     {playlist?.title}
-                    <span></span>
+                    <span transition:name=`playlist ${playlist?.id} title`></span>
                   </h1>
                 </div>
         
                 <div class="flex-1 flex items-end">
                   <div class="text-sm text-gray-300 font-normal">
-                    <div>
+                    <div transition:name=`playlist ${playlist?.id} artists`>
                       <span>{playlist?.artists.join(", ")}</span>
                     </div>
                     <p class="mt-1">
