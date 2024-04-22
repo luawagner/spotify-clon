@@ -3,7 +3,9 @@ import { create } from "zustand";
 export const usePlayerStore =  create((set) => ({ //callback ->set -> actuzaliza estado
     isPlaying: false, //definición de estado inicial
     currentMusic: { playlist: null, song: null, songs: []},//definición de estado inicial
-    //se definen dos funciones para actulizar estados
+    volume: 1,
+    //se definen las funciones para actulizar estados
+    setVolume: (volume) => set({volume}),
     setIsPlaying: (isPlaying) => set({ isPlaying }),//actualiza el estado isPlaying con el parámetro isPlaying
     setCurrentMusic: (currentMusic) => set({ currentMusic })//lo mismo acá
 }))
