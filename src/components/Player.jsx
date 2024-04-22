@@ -37,15 +37,32 @@ const VolumeControl = () => {
     //Primero definimos unestado global para el volumen
     const volume = usePlayerStore(state => state.volume)
     const setVolume = usePlayerStore(state => state.setVolume)
+    const previousVolumeRef = useRef(volume) //Guardar referencia del volumen actual
 
+    const isVolumeSilenced = volume < 0.1
+    //Al hacer click en volumen se guarda el valor actual del mismo
+    //y se silencia el audio
+    const handleClickVolume = () => {
+        if (isVolumeSilenced) {
+    //setea el estado del volumen con la referencia guardada en el current
+          setVolume(previousVolumeRef.current)
+        } else {
+            previousVolumeRef.current = volume // Guardamos el volumen en la referencia
+            setVolume(0)
+        }
+    }   
+ 
 
     return (
         <div className="flex justify-center gap-x-2">
-        {volume < 0.1 ? <VolumeSilence /> : <Volume />}
+            <button className="opacity-70 hover:opacity-100 transition" onClick={handleClickVolume}>
+            {isVolumeSilenced ? <VolumeSilence /> : <Volume />}
+            </button>
         <Slider 
         defaultValue={[100]}
         max={100}
         min={0}
+        value={[volume * 100]}
         className="w-[95px]"
         onValueChange={(value) => {
             const [newVolume] = value
