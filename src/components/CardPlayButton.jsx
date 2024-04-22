@@ -23,11 +23,11 @@ cada vez que cualquier parte del estado global cambie. Es una forma de asegurars
     setIsPlaying(true)
     setCurrentMusic({ songs, playlist, song: songs[0] })//seteamos el estado con este objeto
     //reproducimos la primera canción de la playlist
-    
+    console.log({ songs, playlist })
    })
  } //negamos el estado anterior
 
-/*Este componente recibe por prop una id de la plyslist que estamos intentando reproducir.
+/*Este componente recibe por prop una id de la playlist que estamos intentando reproducir.
 Para identificar cuál es la playlist cuyo botón debe cambiar (si le doy play que muestre pausa y viceversa),
 se cambiará el botón de la card(playlist) cuya id coincida 
 con la id de la playlist guardada en el estado.

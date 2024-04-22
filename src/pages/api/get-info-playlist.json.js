@@ -13,10 +13,11 @@ const urlObject = new URL(url)
 const id = urlObject.searchParams.get('id') 
 
 //buscamos la playlist que tena la misma id
-const playlist = allPlaylist.find((playlist) => playlist.id === id)
+const playlist = allPlaylists.find((playlist) => playlist.id === id)
 //Buscamos las canciones que perteneces a esa playlist
 const songs = allSongs.filter(song => song.albumId === playlist?.albumId)
-return ner Response(JSON.stringify({ playlist, songs }){
+
+return new Response(JSON.stringify({ playlist, songs }), {
     headers: { "content-type": "application/json"}
 })
 
