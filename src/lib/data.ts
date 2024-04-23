@@ -318,4 +318,40 @@ export const songs: Song[] = [
     "album": "Chill Lo-Fi Music",
     "duration": "4:20"
   },
+  {
+    "id": 1,
+    "albumId": 6,
+    "title": "Skyline Serenade",
+    "image": `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
+    "artists": ["LoFi Dreamer"],
+    "album": "Chill Lo-Fi Music",
+    "duration": "3:50"
+  },
+  {
+    "id": 2,
+    "albumId": 6,
+    "title": "Midnight Tales",
+    "image": `https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187`,
+    "artists": ["Urban Nocturne"],
+    "album": "Midnight Tales",
+    "duration": "3:50"
+  },
+  {
+    "id": 3,
+    "albumId": 6,
+    "title": "No more TypeScript for me",
+    "image": `https://f4.bcbits.com/img/a1435058381_65.jpg`,
+    "artists": ["Tenno"],
+    "album": "Study Session",
+    "duration": "2:10"
+  },
+  {
+    "id": 4,
+    "albumId": 6,
+    "title": "Go go go!",
+    "image": "https://f4.bcbits.com/img/a1962013209_16.jpg",
+    "artists": ["Tenno"],
+    "album": "Study Session",
+    "duration": "3:20"
+  },
 ]
