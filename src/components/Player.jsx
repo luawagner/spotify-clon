@@ -88,24 +88,24 @@ const SongControl = ({ audio }) => {
     }
     const formatTime = time => {
         if (time == null) return "0:00"
-        const seconds = Math.floor(time % 60)
+        const seconds = Math.floor(time % 60)//120" debo transformarlos en 2'
         const minutes = Math.floor(time / 60)
-        return `${minutes}:${seconds.toString().padStart(2, '0')}`
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`//rellenar hasta dos unidades con cero. Ej: 1:07
     }
     return(
         <div className="flex gap-x-3 text-xs">
-            <span className="opacity-50">{formatTime(currentTime)}</span>
+            <span className="opacity-50 w-12 text-right">{formatTime(currentTime)}</span>
             <Slider 
         defaultValue={[0]}
         value={[currentTime]}
         max={audio?.current?.duration ?? 0}
         min={0}
-        className="w-[500px]"
+        className="w-[400px]"
         onValueChange={(value) => {
            audio.current.currentTime = value
         }}
         />
-            <span className="opacity-50">{formatTime(duration)}</span>
+             <span className="opacity-50 w-12">{ duration ? formatTime(duration) : null}</span> 
         </div>
     )
 }
@@ -157,7 +157,7 @@ const handleClick = () => {
 return (
     <div className="flex flex-row justify-between w-full px-4 z-50">
 
-         <div>
+         <div className="w-[200px]">
         <CurrentSong {...currentMusic.song} />
         </div>
         <div className="grid place-content-center gap-4 flex-1">
