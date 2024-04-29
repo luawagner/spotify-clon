@@ -1,7 +1,7 @@
 import { Pause, Play } from "./Player"
 import { usePlayerStore } from "../store/playerStore"
 
-export function CardPlayButton ({ id }) {
+export function CardPlayButton ({ id, size = 'small' }) {
 const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
 /* Devuelve todo el estado global (state). Esto significa que el componente se volverá a renderizar 
 cada vez que cualquier parte del estado global cambie. Es una forma de asegurarse de que el componente
@@ -32,9 +32,12 @@ Para identificar cuál es la playlist cuyo botón debe cambiar (si le doy play q
 se cambiará el botón de la card(playlist) cuya id coincida 
 con la id de la playlist guardada en el estado.
 */
+
+const iconClassName = size === 'small' ? 'w-4 h-4' : 'w-6 h-6'
  return (
-        <button onClick={handleClick} className="card-play-button rounded-full bg-green-500 p-4">
-           {isPlayingPlaylist ? <Pause /> : <Play />} 
+        <button onClick={handleClick} className="card-play-button rounded-full bg-green-500 p-4
+        hover:scale-105 transition hover:bg-green-400">
+           {isPlayingPlaylist ? <Pause className={iconClassName} /> : <Play className={iconClassName} />} 
         </button>
     )
 } /* Cuando de click al play, los botones play (card y player) 
